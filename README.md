@@ -76,6 +76,25 @@ people then render your project without needing ftmbrand themselves.
 Fonts are bundled, so renders need no network and `embed-resources: true`
 reports carry their own typography.
 
+**Self-contained reports (`embed-resources: true`):** declare the brand
+light-only in `_quarto.yml`. Otherwise Quarto also builds an unused dark
+stylesheet and a duplicate light one, and inlines the fonts into all three
+(a 2.5 MB test report became 7.6 MB, with no visible difference):
+
+```yaml
+brand:
+  light: _extensions/ftmbrand/brand.yml
+```
+
+The extension can't set this itself (Quarto accepts only a plain path there).
+`favicon:` is ignored outside websites; for a single document add
+`include-in-header: {text: '<link rel="icon" href="_extensions/ftmbrand/logos/favicon.ico">'}`
+and `embed-resources` inlines it.
+
+**Custom SCSS on top of the brand:** `$brand-*` variables are available in a
+theme file's `scss:rules` section only; Quarto places a file's
+`scss:defaults` ahead of the brand's, where they're undefined.
+
 **While this repo is private**, `quarto add Field-to-Market/ftmbrand` fails
 with "Extension not found". Install from a local clone instead, run from the
 consuming project's root:
