@@ -1,0 +1,8 @@
+# Air formatter config — https://posit-dev.github.io/air/configuration.html
+# Same settings as mango-tango, so FTM R code formats identically everywhere.
+
+[format]
+line-width = 80
+indent-width = 2
+indent-style = "space"
+persistent-line-breaks = true

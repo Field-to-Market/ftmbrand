@@ -1,0 +1,15 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rcheck/
+*.tar.gz
+.quarto/
+
+# Commercial brand fonts (Trade Gothic Next, Chaparral Pro) must never be
+# committed: their licenses forbid redistribution. Only OFL fonts in inst/fonts/.
+*.otf
+*TradeGothic*
+*Chaparral*
+# The brand guide PDF is internal; point to it, don't commit it.
+*.pdf

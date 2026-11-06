@@ -1,0 +1,10 @@
+Copyright (c) 2026 Field to Market. All rights reserved.
+
+TO DECIDE BEFORE THIS REPOSITORY IS MADE PUBLIC: a license for the R code.
+
+The Field to Market name and logos (inst/brand/logos/, _extensions/ftmbrand/logos/)
+are trademarks of Field to Market and are not covered by any code license. Use
+them only as the Field to Market Brand Guide (January 2026) allows.
+
+The bundled Source Sans 3 font files (inst/fonts/) are (c) Adobe and licensed
+under the SIL Open Font License 1.1; see inst/fonts/OFL-SourceSans3.md.

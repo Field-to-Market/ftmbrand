@@ -1,0 +1,10 @@
+^\.git$
+^\.github$
+^.*\.Rproj$
+^\.Rproj\.user$
+^_extensions$
+^tools$
+^air\.toml$
+^jarl\.toml$
+^CLAUDE\.md$
+^README\.md$

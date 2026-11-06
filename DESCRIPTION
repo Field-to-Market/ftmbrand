@@ -1,0 +1,38 @@
+Package: ftmbrand
+Type: Package
+Title: Field to Market Brand for Data Visualization
+Version: 0.1.0
+Authors@R: c(
+    person("Austin", "Pearce", , "apearce@fieldtomarket.org",
+      role = c("aut", "cre")),
+    person("Field to Market", role = "cph")
+  )
+Description: One source of truth for Field to Market's visual brand. Ships
+    the canonical brand.yml file, logos and plot fonts, and builds ggplot2
+    themes, color scales and palettes from that file so figures, Quarto
+    sites and Shiny apps stay aligned.
+License: file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+Depends:
+    R (>= 4.2)
+Imports:
+    cli,
+    colorspace,
+    fs,
+    ggplot2 (>= 3.5.0),
+    grDevices,
+    grid,
+    stats,
+    systemfonts,
+    utils,
+    yaml
+Suggests:
+    patchwork,
+    png,
+    Polychrome,
+    ragg,
+    testthat (>= 3.0.0),
+    withr
+Config/testthat/edition: 3
+Config/roxygen2/version: 8.1.1

@@ -1,0 +1,10 @@
+title: Field to Market brand
+author: Field to Market
+version: 0.1.0
+# Lowest version tested (1.10.19). Brand extensions may work on older Quarto;
+# lower this only after verifying a render on that version.
+quarto-required: ">=1.10.0"
+contributes:
+  metadata:
+    project:
+      brand: brand.yml

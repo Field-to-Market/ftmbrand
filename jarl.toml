@@ -1,0 +1,21 @@
+# jarl linter config — https://jarl.etiennebacher.com
+# Same rules as mango-tango: {fs} over base file-system functions, no transmute().
+
+[lint.undesirable_function]
+extend-functions = [
+    "transmute",
+    "setwd",
+    "normalizePath",
+    "file.path",
+    "file.exists",
+    "file.remove",
+    "file.copy",
+    "dir.create",
+    "dir.exists",
+    "list.files",
+    "list.dirs",
+    "basename",
+    "dirname",
+    "path.expand",
+    "unlink",
+]

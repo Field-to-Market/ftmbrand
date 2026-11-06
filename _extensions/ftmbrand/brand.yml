@@ -1,0 +1,114 @@
+# Field to Market brand — the single source of truth (posit-dev brand.yml spec).
+#
+# Everything else reads this file: the ftmbrand R package (colors, fonts, logos),
+# the Quarto extension in _extensions/ftmbrand/ (a synced copy — run
+# tools/sync-extension.R after editing), and Shiny/bslib apps.
+#
+# Values come from FTM_Brand Guidelines_011626.pdf (Version 1.0, January 2026):
+# colors from p.14, color hierarchy from p.15, typography from pp.12-13.
+# Seeded from methods/_brand.yml, whose hexes match the guide exactly.
+#
+# Spec: https://posit-dev.github.io/brand-yml/
+
+meta:
+  name: Field to Market
+  link:
+    home: https://fieldtomarket.org
+    methods: https://methods.fieldtomarket.org
+
+logo:
+  # Paths resolve relative to this file. The guide prefers the horizontal logo
+  # "whenever space allows" (p.5); minimum size is 0.5 inch tall (p.10).
+  images:
+    favicon:
+      path: logos/favicon.ico
+      alt: Field to Market favicon
+    vertical:
+      path: logos/FTM-V_rgb.png
+      alt: Field to Market
+    horizontal:
+      path: logos/FTM-H_rgb.png
+      alt: Field to Market
+    # Full-color reverse, for dark backgrounds (guide p.8).
+    horizontal-reverse:
+      path: logos/FTM-H_rgb_rev.png
+      alt: Field to Market
+  small: favicon
+  medium: vertical
+  large: horizontal
+
+color:
+  # Palette key names are the stable API (Sass sees them as $brand-<key>; R
+  # turns hyphens into underscores). Brand-guide color names in comments.
+  palette:
+    orange: "#f46c09"            # Ember Glow — primary
+    navy: "#10427c"              # Deep Current — primary
+    sky-drift: "#0d9ac6"         # Sky Drift — secondary
+    green: "#00b14c"             # Meadow Pulse — secondary
+    purple: "#462668"            # Twilight Bloom — secondary
+    yellow: "#ffd103"            # Solar Bloom — secondary
+    iron: "#58595b"              # Iron Whisper — neutral
+    light-gray: "#ebebeb"        # Mist Veil — neutral
+    dark-gray: "#212121"         # Night Spark — neutral
+    white: "#ffffff"             # Pure Horizon — neutral
+    very-light-gray: "#fafafa"   # utility neutral (no brand equivalent)
+    heading-underline: "#e0e0e0" # utility neutral (no brand equivalent)
+  foreground: dark-gray
+  background: white
+  primary: navy
+  secondary: orange
+  light: light-gray
+  dark: dark-gray
+
+typography:
+  # The brand faces (Trade Gothic Next LT Pro, Chaparral Pro) are commercial and
+  # must never be committed here. Web/plot stand-ins:
+  # - Source Sans 3 for body (Field to Market's long-standing substitute; the
+  #   2021 rename of "Source Sans Pro" — the old name silently falls back).
+  # - Bebas Neue for web headings, standing in for Trade Gothic Heavy Condensed
+  #   (as on methods.fieldtomarket.org). Plots use Source Sans 3 bold instead.
+  # The guide's own fallback is Arial (p.12); switching is a one-line change.
+  fonts:
+    - family: Source Sans 3
+      source: google
+      weight: [400, 600, 700]
+      style: [normal, italic]
+    - family: Bebas Neue
+      source: google
+      weight: 400
+    - family: Fira Code
+      source: google
+      weight: [400, 600, 700]
+  base:
+    # Inner quotes are load-bearing: Quarto writes this value into CSS verbatim,
+    # and an unquoted CSS font name can't contain a word starting with a digit
+    # ("3"), so the browser drops the declaration and falls back to a default
+    # font. R strips the quotes (R/zzz.R). Quote any family like this.
+    family: "'Source Sans 3'"
+    size: 14pt
+    line-height: 1.4
+  headings:
+    family: Bebas Neue
+    weight: 400
+    color: navy
+  link:
+    color: navy
+  monospace:
+    family: Fira Code
+  monospace-inline:
+    color: sky-drift
+    background-color: light-gray
+  monospace-block:
+    background-color: light-gray
+
+# Sass passthrough: values are injected verbatim as Sass variable defaults, so
+# use $brand-<key> variables, never bare palette keys or CSS color names.
+# https://posit-dev.github.io/brand-yml/brand/defaults.html
+defaults:
+  bootstrap:
+    defaults:
+      navbar-bg: $brand-light-gray
+      navbar-fg: $brand-navy
+      navbar-hl: $brand-orange
+      sidebar-bg: $brand-light-gray
+      sidebar-fg: $brand-navy
