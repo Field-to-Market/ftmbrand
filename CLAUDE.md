@@ -13,7 +13,9 @@ README.md is the user guide; this file is the working brief.
 - `_extensions/ftmbrand/` is a copy. After editing `inst/brand/`, run
   `Rscript tools/sync-extension.R`; `test-extension.R` fails until you do.
 - Never commit the commercial fonts (Trade Gothic Next, Chaparral Pro) or the
-  brand guide PDF. Only OFL fonts go in `inst/fonts/`.
+  brand guide PDF. Only OFL fonts (with their license file) go in
+  `inst/brand/fonts/`; that one folder serves the web (brand.yml
+  `source: file`, one static file per weight) and R plots (`R/fonts.R`).
 - Optional dependencies (Polychrome, patchwork, png) stay in Suggests, with a
   `requireNamespace()` check and a `cli::cli_abort()` install hint.
 - Style follows mango-tango: native pipe, `{fs}` not base file functions,
