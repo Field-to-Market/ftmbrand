@@ -14,7 +14,7 @@ you it's stale; an installed, versioned package can.
 |---|---|
 | `inst/brand/_brand.yml` | **The source of truth.** Colors, fonts, logos ([brand.yml](https://posit-dev.github.io/brand-yml/) spec) |
 | `inst/brand/logos/` | Official logo files (horizontal, horizontal reverse, vertical, favicon) |
-| `inst/fonts/` | Source Sans 3 (SIL Open Font License), registered for plots on load |
+| `inst/brand/fonts/` | Source Sans 3, Bebas Neue, Fira Code (SIL Open Font License). Served to sites and reports, and registered for plots on load |
 | `R/` | The R package: theme, scales, palettes, logo helpers. All read `_brand.yml` |
 | `_extensions/ftmbrand/` | Quarto brand extension: a synced copy of `inst/brand/` |
 
@@ -70,7 +70,24 @@ quarto add Field-to-Market/ftmbrand
 
 This needs a `_quarto.yml` project. The extension contributes `project.brand`, so
 the site's colors, fonts and logos come from the shared file. Delete any local
-`_brand.yml` copy when you adopt it.
+`_brand.yml` copy when you adopt it. Commit `_extensions/ftmbrand/`: other
+people then render your project without needing ftmbrand themselves.
+
+Fonts are bundled, so renders need no network and `embed-resources: true`
+reports carry their own typography.
+
+**While this repo is private**, `quarto add Field-to-Market/ftmbrand` fails
+with "Extension not found". Install from a local clone instead, run from the
+consuming project's root:
+
+```bash
+git -C ../ftmbrand pull          # get the latest brand
+quarto add ../ftmbrand           # installs, or overwrites an older copy
+```
+
+The same command updates an existing install; `quarto update` won't work while
+the repo is private. Then re-render, check the result, and commit the changed
+`_extensions/ftmbrand/`.
 
 ## Shiny
 
@@ -86,13 +103,17 @@ project needs one.
 
 ## Changing the brand
 
-1. Edit `inst/brand/_brand.yml` (and logos in `inst/brand/logos/`).
+1. Edit `inst/brand/_brand.yml` (and logos or fonts in `inst/brand/logos/`,
+   `inst/brand/fonts/`). Fonts are `.ttf` (for R) plus a `.woff2` web copy;
+   after adding or replacing a `.ttf`, rebuild the web copies with
+   `uv run --no-project --with fonttools --with brotli python tools/build-woff2.py`.
 2. Run `Rscript tools/sync-extension.R` to update the Quarto copy.
 3. `devtools::test()`. Tests pin the hexes to the brand guide and fail if the
    extension copy is stale.
 4. Bump `Version` in `DESCRIPTION` and `_extensions/ftmbrand/_extension.yml`,
    and add a `NEWS.md` entry.
-5. Consumers update with `pak::pak()` / `quarto update`.
+5. Consumers update with `pak::pak()` for R and, for Quarto, re-run
+   `quarto add` (see [Quarto](#quarto)).
 
 Never commit the commercial brand fonts (Trade Gothic Next, Chaparral Pro) or
 the brand guide PDF. `.gitignore` blocks both.

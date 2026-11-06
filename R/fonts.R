@@ -17,7 +17,8 @@ ftm_register_fonts <- function() {
   if (font_resolves(family)) {
     return(invisible(FALSE))
   }
-  dir <- system.file("fonts", package = "ftmbrand", mustWork = TRUE)
+  # Same files the brand.yml serves to the web (inst/brand/fonts/).
+  dir <- system.file("brand", "fonts", package = "ftmbrand", mustWork = TRUE)
   systemfonts::register_font(
     name = family,
     plain = as.character(fs::path(dir, "SourceSans3-Regular.ttf")),

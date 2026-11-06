@@ -1,3 +1,11 @@
+# ftmbrand 0.2.0
+
+* Web fonts are bundled instead of loaded from Google Fonts, so Quarto sites
+  and `embed-resources` reports render offline with no external font
+  requests. `inst/fonts/` moved to `inst/brand/fonts/`, which now also holds
+  Source Sans 3 Semibold, Bebas Neue and Fira Code (all SIL Open Font
+  License). The same files register for R plots.
+
 # ftmbrand 0.1.0
 
 * First version. Canonical `_brand.yml` (Jan 2026 brand guide colors), logos,

@@ -67,18 +67,36 @@ typography:
   #   2021 rename of "Source Sans Pro" — the old name silently falls back).
   # - Bebas Neue for web headings, standing in for Trade Gothic Heavy Condensed
   #   (as on methods.fieldtomarket.org). Plots use Source Sans 3 bold instead.
-  # The guide's own fallback is Arial (p.12); switching is a one-line change.
+  # The guide's own fallback is Arial (p.12).
+  #
+  # Fonts are bundled in fonts/ (all SIL Open Font License, licenses alongside),
+  # not pulled from Google, so sites and embed-resources reports render offline
+  # with no external font requests. The web gets .woff2 (about a third the size;
+  # embed-resources inlines fonts once per stylesheet copy); R plots register
+  # the matching .ttf (R/fonts.R). Rebuild the .woff2 from the .ttf with
+  # tools/build-woff2.py. Quarto's schema takes one fixed weight per file (no
+  # variable-font ranges), hence one static file per weight. Sources: Source Sans 3 from
+  # adobe-fonts/source-sans 3.052R (not the Google v1 API, whose TTFs carry a
+  # broken family name), Bebas Neue from Google Fonts, Fira Code from
+  # tonsky/FiraCode 6.2.
   fonts:
     - family: Source Sans 3
-      source: google
-      weight: [400, 600, 700]
-      style: [normal, italic]
+      source: file
+      files:
+        - {path: fonts/SourceSans3-Regular.woff2, weight: 400, style: normal}
+        - {path: fonts/SourceSans3-It.woff2, weight: 400, style: italic}
+        - {path: fonts/SourceSans3-Semibold.woff2, weight: 600, style: normal}
+        - {path: fonts/SourceSans3-Bold.woff2, weight: 700, style: normal}
+        - {path: fonts/SourceSans3-BoldIt.woff2, weight: 700, style: italic}
     - family: Bebas Neue
-      source: google
-      weight: 400
+      source: file
+      files:
+        - {path: fonts/BebasNeue-Regular.woff2, weight: 400, style: normal}
     - family: Fira Code
-      source: google
-      weight: [400, 600, 700]
+      source: file
+      files:
+        - {path: fonts/FiraCode-Regular.woff2, weight: 400, style: normal}
+        - {path: fonts/FiraCode-Bold.woff2, weight: 700, style: normal}
   base:
     # Inner quotes are load-bearing: Quarto writes this value into CSS verbatim,
     # and an unquoted CSS font name can't contain a word starting with a digit
