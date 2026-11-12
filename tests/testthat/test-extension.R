@@ -14,6 +14,15 @@ test_that("extension brand.yml is identical to inst/brand/_brand.yml", {
   )
 })
 
+test_that("extension carries the repo's trademark notice", {
+  trademarks <- fs::path(repo, "TRADEMARKS.md")
+  skip_if_not(fs::dir_exists(ext) && fs::file_exists(trademarks))
+  expect_identical(
+    unname(tools::md5sum(fs::path(ext, "TRADEMARKS.md"))),
+    unname(tools::md5sum(trademarks))
+  )
+})
+
 # Mirrors tools/sync-extension.R: the extension gets web files only.
 web_files <- list(logos = ".", fonts = "[.](woff2|md)$")
 for (dir in names(web_files)) {

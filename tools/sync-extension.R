@@ -18,6 +18,11 @@ if (!dir_exists(src) || !dir_exists(dest)) {
 
 file_copy(path(src, "_brand.yml"), path(dest, "brand.yml"), overwrite = TRUE)
 
+# The trademark notice travels with the logos: `quarto add` copies only the
+# extension folder into consuming repos, so the repo-root copy wouldn't reach
+# them.
+file_copy("TRADEMARKS.md", path(dest, "TRADEMARKS.md"), overwrite = TRUE)
+
 # Mirror each asset folder: delete then copy, so files removed from
 # inst/brand/ don't linger in the extension. Fonts ship only what the web uses
 # (.woff2 plus licenses); the .ttf files are for R plots and would just add
@@ -36,5 +41,5 @@ n_logos <- length(dir_ls(path(dest, "logos")))
 n_fonts <- length(dir_ls(path(dest, "fonts")))
 cli::cli_bullets(c(
   v = "Synced {.path {src}} -> {.path {dest}}",
-  i = "brand.yml, {n_logos} logo file{?s}, {n_fonts} font/license file{?s}"
+  i = "brand.yml, TRADEMARKS.md, {n_logos} logo file{?s}, {n_fonts} font/license file{?s}"
 ))

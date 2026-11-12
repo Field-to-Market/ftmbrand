@@ -24,7 +24,7 @@ Brand values follow *FTM_Brand Guidelines_011626.pdf* (Version 1.0, January
 ## R
 
 ```r
-pak::pak("Field-to-Market/ftmbrand")   # private repo: needs a GITHUB_PAT
+pak::pak("Field-to-Market/ftmbrand")
 library(ftmbrand)
 library(ggplot2)
 
@@ -95,17 +95,8 @@ and `embed-resources` inlines it.
 theme file's `scss:rules` section only; Quarto places a file's
 `scss:defaults` ahead of the brand's, where they're undefined.
 
-**While this repo is private**, `quarto add Field-to-Market/ftmbrand` fails
-with "Extension not found". Install from a local clone instead, run from the
-consuming project's root:
-
-```bash
-git -C ../ftmbrand pull          # get the latest brand
-quarto add ../ftmbrand           # installs, or overwrites an older copy
-```
-
-The same command updates an existing install; `quarto update` won't work while
-the repo is private. Then re-render, check the result, and commit the changed
+**Updating:** re-run `quarto add Field-to-Market/ftmbrand` from the consuming
+project's root (it overwrites the older copy), then re-render, check the result, and commit the changed
 `_extensions/ftmbrand/`.
 
 ## Shiny
@@ -136,3 +127,10 @@ project needs one.
 
 Never commit the commercial brand fonts (Trade Gothic Next, Chaparral Pro) or
 the brand guide PDF. `.gitignore` blocks both.
+
+## License
+
+The code is MIT licensed (`LICENSE.md`). The Field to Market name and logos are
+trademarks and are **not** covered by that license: don't use them on modified
+versions or without permission (see `TRADEMARKS.md`). The bundled fonts are
+under the SIL Open Font License.

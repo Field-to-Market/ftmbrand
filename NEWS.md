@@ -1,3 +1,9 @@
+# ftmbrand (development version)
+
+* Code is now MIT licensed. The Field to Market name and logos are excluded;
+  see `TRADEMARKS.md`. The repository is public, so `pak::pak()` and
+  `quarto add Field-to-Market/ftmbrand` no longer need a token or local clone.
+
 # ftmbrand 0.2.0
 
 * Web fonts are bundled instead of loaded from Google Fonts, so Quarto sites
