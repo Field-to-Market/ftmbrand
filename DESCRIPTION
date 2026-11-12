@@ -11,7 +11,7 @@ Description: One source of truth for Field to Market's visual brand. Ships
     the canonical brand.yml file, logos and plot fonts, and builds ggplot2
     themes, color scales and palettes from that file so figures, Quarto
     sites and Shiny apps stay aligned.
-License: file LICENSE
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 Depends:
